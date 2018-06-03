@@ -71,5 +71,10 @@ if [ ! -z "$AUTO_CREATE_TOPICS" ]; then
     echo "auto.create.topics.enable=$AUTO_CREATE_TOPICS" >> $KAFKA_HOME/config/server.properties
 fi
 
+# Add alias to /etc/hosts
+if [ ! -z "$LOCALHOST_ALIAS" ]; then
+    echo "127.0.0.1    $LOCALHOST_ALIAS" >> /etc/hosts
+fi
+
 # Run Kafka
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
